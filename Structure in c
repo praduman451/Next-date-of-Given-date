@@ -1,0 +1,49 @@
+#include<stdio.h>
+void NextDate(int *year, int *month, int *day)
+{
+    int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+ 
+    *day = *day +1;
+    if (( *month == 2 ) && (*day == 29))
+    {
+     
+        if(*year % 400 == 0 || (*year % 100 != 0 && *year % 4 == 0))
+        {
+            daysInMonth[1] = 29;
+        }
+    }
+ 
+    if (*day > daysInMonth[*month -1])
+    {
+        *day = 1;
+        *month = *month +1;
+        if (*month > 12)
+        {
+            *month = 1;
+            *year = *year +1;
+        }
+    }
+}
+int main()
+{
+   int t;
+   scanf("%d",&t);
+   while(t--){
+   int Iyear, Imonth, Iday;
+   scanf("%d%d%d", &Iday, &Imonth, &Iyear);
+ 
+   NextDate(&Iyear, &Imonth, &Iday);
+
+if(Iday<10)
+     {printf ("0%d-",Iday);}
+else
+   {printf ("%d-",Iday);}
+   
+ if(Imonth<10)
+    { printf ("0%d-",Imonth);}
+ else
+      {printf ("%d-",Imonth);}
+
+printf ("%d\n",Iyear);
+     }
+    }
